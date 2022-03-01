@@ -18,8 +18,10 @@ The `Input` component is layout-independent. It only includes the most basic inp
 | readOnly     | Whether it is readonly or not                                                                 | `boolean`                                            | `false` |
 | clearable    | Whether to enable the clear icon, the input box will be cleared after clicking the clear icon | `boolean`                                            | `false` |
 | onClear      | Triggered after clicking the clear button                                                     | `() => void`                                         | -       |
-| id           | The id of the input element, usually used with label                                          | `string`                                             | -       |
+| id           | The `id` of the `input` element, usually used with `label`                                    | `string`                                             | -       |
 | onEnterPress | The callback when Enter key is pressed                                                        | `(e: React.KeyboardEvent<HTMLInputElement>) => void` | -       |
+| min          | Minimum value, only valid when `type` is `number`                                             | `number`                                             | -       |
+| max          | Maximum value, only valid when `type` is `number`                                             | `number`                                             | -       |
 
 In addition, the following native attributes are supported: `maxLength` `minLength` `max` `min` `autoComplete` `enterKeyHint` `pattern` `inputMode` `type` `onFocus` `onBlur` `autoCapitalize` `autoCorrect` `onKeyDown` `onKeyUp` `onCompositionStart` `onCompositionEnd`
 
@@ -46,4 +48,4 @@ In addition, the following native attributes are supported: `maxLength` `minLeng
 
 In native `input`, `maxlength` only takes effect when `type` is `text`, `search`, `url`, `tel`, `email`, `password`, please refer to [MDN document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#attr-maxlength)。
 
-If you need to limit the number type to the input box, you can pass the `max` `min` prop.
+If you need to limit the input box with number type, you can pass the `max` `min` prop.

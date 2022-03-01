@@ -33,13 +33,13 @@ export default () => {
       >
         <Form.Header>基础用法</Form.Header>
         <Form.Item
-          name='姓名'
+          name='name'
           label='姓名'
           rules={[{ required: true, message: '姓名不能为空' }]}
         >
           <Input placeholder='请输入姓名' />
         </Form.Item>
-        <Form.Item name='address' label='地址'>
+        <Form.Item name='address' label='地址' help='详情地址'>
           <Input placeholder='请输入地址' />
         </Form.Item>
         <Form.Item
@@ -93,13 +93,13 @@ export default () => {
       >
         <Form.Header>水平布局</Form.Header>
         <Form.Item
-          name='姓名'
+          name='name'
           label='姓名'
           rules={[{ required: true, message: '姓名不能为空' }]}
         >
           <Input onChange={console.log} placeholder='请输入姓名' />
         </Form.Item>
-        <Form.Item name='address' label='地址'>
+        <Form.Item name='address' label='地址' help='详情地址'>
           <TextArea placeholder='请输入地址' maxLength={100} rows={4} />
         </Form.Item>
       </Form>

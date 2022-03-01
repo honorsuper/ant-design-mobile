@@ -29,15 +29,15 @@ import {Button} from 'antd-mobile-v2'
 如果此时你发现 v2 的组件样式丢失了，那么可以在入口文件中手动引入一下样式文件：
 
 ```js
-import 'antd-mobile-v2/dist/antd-mobile.css';  // or 'antd-mobile-v2/dist/antd-mobile.less'
+import 'antd-mobile-v2/dist/antd-mobile.less';  // or 'antd-mobile-v2/dist/antd-mobile.css'
 ```
 
 最后，重新安装 `antd-mobile` 为 v5 版本：
 
 ```bash
-$ npm install --save antd-mobile@next
+$ npm install --save antd-mobile
 # or
-$ yarn add antd-mobile@next
+$ yarn add antd-mobile
 ```
 
 现在，你项目中的 `antd-mobile` 是 v5 版本，`antd-mobile-v2` 是 v2 版本。
@@ -55,9 +55,9 @@ $ yarn add antd-mobile@next
 你可以通过别名的方式来安装 antd-mobile v5，同时保留 v2 版本：
 
 ```bash
-$ npm install --save antd-mobile-v5@npm:antd-mobile@next
+$ npm install --save antd-mobile-v5@npm:antd-mobile@5
 # or
-$ yarn add antd-mobile-v5@npm:antd-mobile@next
+$ yarn add antd-mobile-v5@npm:antd-mobile@5
 ```
 
 对应的 package.json 为：
@@ -65,7 +65,7 @@ $ yarn add antd-mobile-v5@npm:antd-mobile@next
 ```json
 {
   "antd-mobile": "^2.3.2",
-  "antd-mobile-v5": "npm:antd-mobile@next"
+  "antd-mobile-v5": "npm:antd-mobile@5"
 }
 ```
 

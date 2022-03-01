@@ -3,9 +3,9 @@
 ## 安装
 
 ```bash
-$ npm install --save antd-mobile@next
+$ npm install --save antd-mobile
 # or
-$ yarn add antd-mobile@next
+$ yarn add antd-mobile
 ```
 
 ## 引入
@@ -20,9 +20,9 @@ import { Button } from 'antd-mobile'
 
 ## 兼容性
 
-目前的兼容性标准为 iOS Safari >= 10 和 Chrome >= 49。
+如果你不做任何额外的处理，那么 antd-mobile 默认的兼容性为 iOS Safari >= 10 和 Chrome >= 51（也就是 ES6 的兼容标准）。
 
-但是需要你在项目中进行 Babel 配置：
+而通过下面的 babel 配置后，可以达到最大兼容性，为 iOS Safari >= 10 和 Chrome >= 49：
 
 ```json
 {
@@ -40,7 +40,9 @@ import { Button } from 'antd-mobile'
 }
 ```
 
-当然，你也可以根据自己项目中的实际需要对 `targets` 进行配置或者不进行 babel 编译。
+对于 TypeScript，我们兼容的版本是 >= 3.8。
+
+对于 React，我们兼容的版本是 >= 16.8.0。
 
 ## 在线体验
 

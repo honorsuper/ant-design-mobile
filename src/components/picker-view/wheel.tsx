@@ -1,12 +1,12 @@
 import React, { memo, useRef } from 'react'
 import { useSpring, animated } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
-import { convertPx } from '../../utils/convert-px'
 import { rubberbandIfOutOfBounds } from '../../utils/rubberband'
 import { bound } from '../../utils/bound'
 import { PickerColumnItem, PickerValue } from './index'
 import isEqual from 'lodash/isEqual'
 import { useIsomorphicLayoutEffect } from 'ahooks'
+import { measureCSSLength } from '../../utils/measure-css-length'
 
 const classPrefix = `adm-picker-view`
 
@@ -19,7 +19,6 @@ interface Props {
 
 export const Wheel = memo<Props>(
   props => {
-    const itemHeight = convertPx(34)
     const { value, column } = props
     function onSelect(val: PickerValue) {
       props.onSelect(val, props.index)
@@ -35,12 +34,23 @@ export const Wheel = memo<Props>(
 
     const draggingRef = useRef(false)
 
+    const rootRef = useRef<HTMLDivElement>(null)
+    const itemHeight = useRef<number>(34)
+
+    useIsomorphicLayoutEffect(() => {
+      const root = rootRef.current
+      if (!root) return
+      itemHeight.current = measureCSSLength(
+        window.getComputedStyle(root).getPropertyValue('--item-height')
+      )
+    })
+
     useIsomorphicLayoutEffect(() => {
       if (draggingRef.current) return
       if (!value) return
       const targetIndex = column.findIndex(item => item.value === value)
       if (targetIndex < 0) return
-      const finalPosition = targetIndex * -itemHeight
+      const finalPosition = targetIndex * -itemHeight.current
       api.start({ y: finalPosition, immediate: y.goal !== finalPosition })
     }, [value, column])
 
@@ -58,7 +68,7 @@ export const Wheel = memo<Props>(
     }, [column, value])
 
     function scrollSelect(index: number) {
-      const finalPosition = index * -itemHeight
+      const finalPosition = index * -itemHeight.current
       api.start({ y: finalPosition })
       const item = column[index]
       if (!item) return
@@ -68,14 +78,16 @@ export const Wheel = memo<Props>(
     const bind = useDrag(
       state => {
         draggingRef.current = true
-        const min = -((column.length - 1) * itemHeight)
+        const min = -((column.length - 1) * itemHeight.current)
         const max = 0
         if (state.last) {
           draggingRef.current = false
           const position =
             state.offset[1] + state.velocity[1] * state.direction[1] * 50
           const targetIndex =
-            min < max ? -Math.round(bound(position, min, max) / itemHeight) : 0
+            min < max
+              ? -Math.round(bound(position, min, max) / itemHeight.current)
+              : 0
           scrollSelect(targetIndex)
         } else {
           const position = state.offset[1]
@@ -84,7 +96,7 @@ export const Wheel = memo<Props>(
               position,
               min,
               max,
-              itemHeight * 50,
+              itemHeight.current * 50,
               0.2
             ),
           })
@@ -153,7 +165,7 @@ export const Wheel = memo<Props>(
     }
 
     return (
-      <div className={`${classPrefix}-column`} {...bind()}>
+      <div ref={rootRef} className={`${classPrefix}-column`} {...bind()}>
         <animated.div
           style={{ translateY: y }}
           className={`${classPrefix}-column-wheel`}

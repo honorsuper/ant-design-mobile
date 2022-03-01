@@ -25,30 +25,32 @@ type PickerValueExtend = {
 }
 ```
 
-| 属性         | 说明                         | 类型                                                           | 默认值   |
-| ------------ | ---------------------------- | -------------------------------------------------------------- | -------- |
-| columns      | 配置每一列的选项             | `PickerColumn[] \| ((value: PickerValue[]) => PickerColumn[])` | -        |
-| value        | 选中项                       | `PickerValue[]`                                                | -        |
-| defaultValue | 默认选中项                   | `PickerValue[]`                                                | `[]`     |
-| onSelect     | 选项改变时触发               | `(value: PickerValue[], extend: PickerValueExtend) => void`    | -        |
-| onConfirm    | 确认时触发                   | `(value: PickerValue[], extend: PickerValueExtend) => void`    | -        |
-| onCancel     | 取消时触发                   | `() => void`                                                   | -        |
-| onClose      | 确认和取消时都会触发关闭事件 | `() => void`                                                   | -        |
-| visible      | 是否显示选择器               | `boolean`                                                      | `false`  |
-| title        | 标题                         | `ReactNode`                                                    | -        |
-| confirmText  | 确定按钮的文字               | `ReactNode`                                                    | `'确定'` |
-| cancelText   | 取消按钮的文字               | `ReactNode`                                                    | `'取消'` |
-| children     | 所选项的渲染函数             | `(items: PickerColumnItem[]) => ReactNode`                     | -        |
+| 属性             | 说明                         | 类型                                                           | 默认值   |
+| ---------------- | ---------------------------- | -------------------------------------------------------------- | -------- |
+| columns          | 配置每一列的选项             | `PickerColumn[] \| ((value: PickerValue[]) => PickerColumn[])` | -        |
+| value            | 选中项                       | `PickerValue[]`                                                | -        |
+| defaultValue     | 默认选中项                   | `PickerValue[]`                                                | `[]`     |
+| onSelect         | 选项改变时触发               | `(value: PickerValue[], extend: PickerValueExtend) => void`    | -        |
+| onConfirm        | 确认时触发                   | `(value: PickerValue[], extend: PickerValueExtend) => void`    | -        |
+| onCancel         | 取消时触发                   | `() => void`                                                   | -        |
+| onClose          | 确认和取消时都会触发关闭事件 | `() => void`                                                   | -        |
+| closeOnMaskClick | 点击遮罩层后是否关闭         | `boolean`                                                      | `true`   |
+| visible          | 是否显示选择器               | `boolean`                                                      | `false`  |
+| title            | 标题                         | `ReactNode`                                                    | -        |
+| confirmText      | 确定按钮的文字               | `ReactNode`                                                    | `'确定'` |
+| cancelText       | 取消按钮的文字               | `ReactNode`                                                    | `'取消'` |
+| children         | 所选项的渲染函数             | `(items: PickerColumnItem[]) => ReactNode`                     | -        |
 
 此外还支持 [Popup](./popup) 的以下属性：`getContainer` `afterShow` `afterClose` `onClick` `stopPropagation`
 
 ### CSS 变量
 
-| 属性                      | 说明                 | 默认值 | 全局变量 |
-| ------------------------- | -------------------- | ------ | -------- |
-| --header-button-font-size | 确定和取消按钮的字号 | `15px` | -        |
-| --title-font-size         | 标题的字号           | `15px` | -        |
-| --item-font-size          | 选择项的字号         | `16px` | -        |
+| 属性                      | 说明                                 | 默认值 | 全局变量 |
+| ------------------------- | ------------------------------------ | ------ | -------- |
+| --header-button-font-size | 确定和取消按钮的字号                 | `15px` | -        |
+| --title-font-size         | 标题的字号                           | `15px` | -        |
+| --item-font-size          | 选择项的字号                         | `16px` | -        |
+| --item-height             | 选项的高度，仅支持 px rem 和 vw 单位 | `34px` | -        |
 
 ## CascadePicker
 
@@ -109,7 +111,7 @@ type DatePickerFilter = Partial<
 >
 ```
 
-此外还支持 `Picker` 的以下属性：`onCancel` `onClose` `visible` `confirmText` `cancelText` `getContainer` `afterShow` `afterClose` `onClick` `title` `stopPropagation`。
+此外还支持 `Picker` 的以下属性：`onCancel` `onClose` `closeOnMaskClick` `visible` `confirmText` `cancelText` `getContainer` `afterShow` `afterClose` `onClick` `title` `stopPropagation`。
 
 ### CSS 变量
 

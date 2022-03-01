@@ -5,6 +5,8 @@ import { RadioGroupContext } from './group-context'
 import { usePropsValue } from '../../utils/use-props-value'
 import { mergeProps } from '../../utils/with-default-props'
 import { CheckIcon } from '../checkbox/check-icon'
+import { devWarning } from '../../utils/dev-log'
+import { isDev } from '../../utils/is-dev'
 
 const classPrefix = `adm-radio`
 
@@ -38,6 +40,21 @@ export const Radio: FC<RadioProps> = p => {
 
   const { value } = props
   if (groupContext && value !== undefined) {
+    if (isDev) {
+      if (p.checked !== undefined) {
+        devWarning(
+          'Radio',
+          'When used within `Radio.Group`, the `checked` prop of `Radio` will not work.'
+        )
+      }
+      if (p.defaultChecked !== undefined) {
+        devWarning(
+          'Radio',
+          'When used within `Radio.Group`, the `defaultChecked` prop of `Radio` will not work.'
+        )
+      }
+    }
+
     checked = groupContext.value.includes(value)
     setChecked = (checked: boolean) => {
       if (checked) {
@@ -67,12 +84,11 @@ export const Radio: FC<RadioProps> = p => {
   return withNativeProps(
     props,
     <label
-      className={classNames(classPrefix, props.className, {
+      className={classNames(classPrefix, {
         [`${classPrefix}-checked`]: checked,
         [`${classPrefix}-disabled`]: disabled,
         [`${classPrefix}-block`]: props.block,
       })}
-      style={props.style}
     >
       <input
         type='radio'

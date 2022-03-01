@@ -3,9 +3,9 @@
 ## Installation
 
 ```bash
-$ npm install --save antd-mobile@next
+$ npm install --save antd-mobile
 # or
-$ yarn add antd-mobile@next
+$ yarn add antd-mobile
 ```
 
 ## Import
@@ -20,9 +20,9 @@ If you are developing an internal project in alibaba group or ant group, please 
 
 ## Compatibility
 
-The current compatibility standards are iOS Safari >= 10 and Chrome >= 49.
+If you don't do any additional processing, then antd-mobile default compatibility is iOS Safari >= 10 and Chrome >= 51 (that is, ES6 compatibility standard).
 
-However, it is needed to add some babel config in your project:
+With the following babel configuration, maximum compatibility can be achieved for iOS Safari >= 10 and Chrome >= 49:
 
 ```json
 {
@@ -40,7 +40,9 @@ However, it is needed to add some babel config in your project:
 }
 ```
 
-And of course, you can adjust the `targets` config according to your requirements. Or just don't do babel transpiling.
+For TypeScript, antd-mobile is compatible with versions >= 3.8.
+
+For React, antd-mobile is compatible with versions >= 16.8.0.
 
 ## Playground
 

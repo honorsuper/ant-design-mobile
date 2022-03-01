@@ -42,7 +42,7 @@ export default () => {
       title: trans('Fluent', '流畅'),
       txt: trans(
         'With smooth gesture interaction and detailed animation, it helps to create the ultimate experience.',
-        '拥有流畅的手势交互和细致的动画展示，助力打造极致体验。'
+        '拥有流畅的手势交互和细致的动画展示，助力打造极致体验'
       ),
     },
   ]
@@ -56,15 +56,15 @@ export default () => {
             <p className={styles.description}>
               {trans(
                 'Explore the limits of mobile web experience',
-                '探索移动端 web 的体验极限'
+                '探索移动端 Web 的体验极限'
               )}
             </p>
             <p className={styles.buttons}>
               <a href={trans('/guide/quick-start', '/zh/guide/quick-start')}>
                 {trans('Get Started', '开始使用')}
               </a>
-              <a href={codesandboxLink} target='_blank'>
-                {trans('Try it Online', '在线体验')}
+              <a href={trans('/components', '/zh/components')}>
+                {trans('Components', '组件列表')}
               </a>
             </p>
           </div>

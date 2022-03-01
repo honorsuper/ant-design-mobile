@@ -25,30 +25,32 @@ type PickerValueExtend = {
 }
 ```
 
-| Name         | Description                             | Type                                                           | Default  |
-| ------------ | --------------------------------------- | -------------------------------------------------------------- | -------- |
-| columns      | Options to configure each column        | `PickerColumn[] \| ((value: PickerValue[]) => PickerColumn[])` | -        |
-| value        | Selected options                        | `PickerValue[]`                                                | -        |
-| defaultValue | Default selected options                | `PickerValue[]`                                                | `[]`     |
-| onSelect     | Triggered when the options are changed  | `(value: PickerValue[], extend: PickerValueExtend) => void`    | -        |
-| onConfirm    | Triggered when confirming               | `(value: PickerValue[], extend: PickerValueExtend) => void`    | -        |
-| onCancel     | Triggered when cancelling               | `() => void`                                                   | -        |
-| onClose      | Triggered when confirming or cancelling | `() => void`                                                   | -        |
-| visible      | Whether to show or hide the Picker      | `boolean`                                                      | `false`  |
-| title        | Title                                   | `ReactNode`                                                    | -        |
-| confirmText  | Text of the ok button                   | `ReactNode`                                                    | `'确定'` |
-| cancelText   | Text of the cancel button               | `ReactNode`                                                    | `'取消'` |
-| children     | Render function of the selected options | `(items: PickerColumnItem[]) => ReactNode`                     | -        |
+| Name             | Description                                    | Type                                                           | Default  |
+| ---------------- | ---------------------------------------------- | -------------------------------------------------------------- | -------- |
+| columns          | Options to configure each column               | `PickerColumn[] \| ((value: PickerValue[]) => PickerColumn[])` | -        |
+| value            | Selected options                               | `PickerValue[]`                                                | -        |
+| defaultValue     | Default selected options                       | `PickerValue[]`                                                | `[]`     |
+| onSelect         | Triggered when the options are changed         | `(value: PickerValue[], extend: PickerValueExtend) => void`    | -        |
+| onConfirm        | Triggered when confirming                      | `(value: PickerValue[], extend: PickerValueExtend) => void`    | -        |
+| onCancel         | Triggered when cancelling                      | `() => void`                                                   | -        |
+| onClose          | Triggered when confirming or cancelling        | `() => void`                                                   | -        |
+| closeOnMaskClick | Whether to close after clicking the mask layer | `boolean`                                                      | `true`   |
+| visible          | Whether to show or hide the Picker             | `boolean`                                                      | `false`  |
+| title            | Title                                          | `ReactNode`                                                    | -        |
+| confirmText      | Text of the ok button                          | `ReactNode`                                                    | `'确定'` |
+| cancelText       | Text of the cancel button                      | `ReactNode`                                                    | `'取消'` |
+| children         | Render function of the selected options        | `(items: PickerColumnItem[]) => ReactNode`                     | -        |
 
 In addition, the following attributes of [Popup](./popup) are supported: `getContainer` `afterShow` `afterClose` `onClick` `stopPropagation`
 
 ### CSS Variables
 
-| Name                      | Description                             | Default | Global |
-| ------------------------- | --------------------------------------- | ------- | ------ |
-| --header-button-font-size | Font size of confirm and cancel button. | `15px`  | -      |
-| --title-font-size         | Font size of title.                     | `15px`  | -      |
-| --item-font-size          | Font size of option items.              | `16px`  | -      |
+| Name                      | Description                                               | Default | Global |
+| ------------------------- | --------------------------------------------------------- | ------- | ------ |
+| --header-button-font-size | Font size of confirm and cancel button.                   | `15px`  | -      |
+| --title-font-size         | Font size of title.                                       | `15px`  | -      |
+| --item-font-size          | Font size of option items.                                | `16px`  | -      |
+| --item-height             | Height of option item. Only supports px rem and vw units. | `34px`  | -      |
 
 ## CascadePicker
 
@@ -107,7 +109,7 @@ type DatePickerFilter = Partial<
 >
 ```
 
-In addition, the following attributes of `Picker` are supported: `onCancel` `onClose` `visible` `confirmText` `cancelText` `getContainer` `afterShow` `afterClose` `onClick` `title` `stopPropagation`
+In addition, the following attributes of `Picker` are supported: `onCancel` `onClose` `closeOnMaskClick` `visible` `confirmText` `cancelText` `getContainer` `afterShow` `afterClose` `onClick` `title` `stopPropagation`
 
 ### CSS Variables
 

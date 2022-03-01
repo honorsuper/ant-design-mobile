@@ -12,11 +12,13 @@ import {
   defaultRenderLabel,
 } from './date-picker-utils'
 import type { Precision, DatePickerFilter } from './date-picker-utils'
+import { bound } from '../../utils/bound'
 
 export type DatePickerProps = Pick<
   PickerProps,
   | 'onCancel'
   | 'onClose'
+  | 'closeOnMaskClick'
   | 'visible'
   | 'confirmText'
   | 'cancelText'
@@ -64,10 +66,15 @@ export const DatePicker: FC<DatePickerProps> = p => {
 
   const now = useMemo(() => new Date(), [])
 
-  const pickerValue = useMemo(
-    () => convertDateToStringArray(value ?? now, props.precision),
-    [value, props.precision]
-  )
+  const pickerValue = useMemo(() => {
+    let date = value
+    if (date === null) {
+      date = new Date(
+        bound(now.getTime(), props.min.getTime(), props.max.getTime())
+      )
+    }
+    return convertDateToStringArray(date, props.precision)
+  }, [value, props.precision])
 
   const onConfirm = useCallback(
     (val: PickerValue[]) => {

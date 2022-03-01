@@ -2,16 +2,9 @@
 
 <code src="./demos/demo1.tsx"></code>
 
-<code src="./demos/demo2.tsx"></code>
-
 <code src="./demos/demo3.tsx"></code>
 
-Customized or third-party form controls can be used in Form, too. Controls must follow these conventions:
-
-> - It has a controlled property `value`.
-> - It has event `onChange`.
-
-<code src="./demos/demo4.tsx"></code>
+<code src="./demos/demo2.tsx"></code>
 
 ## Form
 
@@ -62,6 +55,14 @@ const validateMessages = {
 <Form validateMessages={validateMessages} />;
 ```
 
+### CSS Variables
+
+| Name            | Description                     | Default                             |
+| --------------- | ------------------------------- | ----------------------------------- |
+| --border-inner  | Border style between form items | `solid 1px var(--adm-border-color)` |
+| --border-top    | Border style of the form top    | `solid 1px var(--adm-border-color)` |
+| --border-bottom | Border style of the form bottom | `solid 1px var(--adm-border-color)` |
+
 ## Form.Item
 
 ### Props
@@ -70,6 +71,7 @@ const validateMessages = {
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | --------------------------------------------------------------------- |
 | label            | Label name                                                                                                                                                                      | `ReactNode`                                   | -                                                                     |
 | help             | Prompt text                                                                                                                                                                     | `ReactNode`                                   | -                                                                     |
+| description      | The description area in the lower middle of the form item.                                                                                                                      | `ReactNode`                                   | -                                                                     |
 | extra            | The right area of the form item.                                                                                                                                                | `ReactNode`                                   | -                                                                     |
 | required         | Whether it is required                                                                                                                                                          | `boolean`                                     | `false`（if `rules` is set, it would be judged according to `rules`） |
 | disabled         | Whether it is disabled                                                                                                                                                          | `boolean`                                     | `false`                                                               |
@@ -128,6 +130,38 @@ When `shouldUpdate` is a function, it will be called by form values update. Prov
   }}
 </Form.Item>
 ```
+
+## Custom field
+
+Customized or third-party form controls can be used in Form, too. Controls must follow these conventions:
+
+- It has a controlled property `value`.
+- It has event `onChange`.
+
+<code src="./demos/demo4.tsx"></code>
+
+## Form.Header
+
+You can use `Form.Header` to group form items.
+
+### Props
+
+| Name     | Description                                                                      | Type        | Default |
+| -------- | -------------------------------------------------------------------------------- | ----------- | ------- |
+| children | Group header. If not passed, it will be rendered as a delimiter with no content. | `ReactNode` | -       |
+
+## Form.Subscribe
+
+### Props
+
+| Name     | Description                                   | Type                                                                    | Default |
+| -------- | --------------------------------------------- | ----------------------------------------------------------------------- | ------- |
+| to       | Same as the `dependencies` prop of Form.Item. | `NamePath[]`                                                            | -       |
+| children | Render function.                              | `(changedValues: Record<string, any>, form: FormInstance) => ReactNode` | -       |
+
+### Demo
+
+<code src="./demos/demo-subscribe.tsx"></code>
 
 ### messageVariables
 

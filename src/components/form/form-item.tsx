@@ -11,6 +11,8 @@ import { FormContext, NoStyleItemContext } from './context'
 import { toArray } from './utils'
 import List, { ListItemProps } from '../list'
 import type { FormLayout } from './index'
+import Popover from '../popover'
+import { QuestionCircleOutline } from 'antd-mobile-icons'
 
 const NAME_SPLIT = '__SPLIT__'
 
@@ -35,7 +37,10 @@ export type FormItemProps = Pick<
   | 'shouldUpdate'
   | 'initialValue'
 > &
-  Pick<ListItemProps, 'style' | 'onClick' | 'extra' | 'arrow'> & {
+  Pick<
+    ListItemProps,
+    'style' | 'onClick' | 'extra' | 'arrow' | 'description'
+  > & {
     label?: React.ReactNode
     help?: React.ReactNode
     hasFeedback?: boolean
@@ -72,6 +77,7 @@ type FormItemLayoutProps = Pick<
   | 'layout'
   | 'extra'
   | 'arrow'
+  | 'description'
 > & {
   htmlFor?: string
   errors?: string[]
@@ -91,6 +97,7 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = props => {
     hidden,
     errors,
     arrow,
+    description,
   } = props
 
   const context = useContext(FormContext)
@@ -105,13 +112,23 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = props => {
     <label className={`${classPrefix}-label`} htmlFor={htmlFor}>
       {label}
       {required && <span className={`${classPrefix}-label-required`}>*</span>}
-      {help && <span className={`${classPrefix}-label-help`}>{help}</span>}
+      {help && (
+        <span className={`${classPrefix}-label-help`}>
+          <Popover content={help} mode='dark' trigger='click'>
+            <QuestionCircleOutline />
+          </Popover>
+        </span>
+      )}
     </label>
   ) : null
 
-  const descriptionElement = feedback && (
-    <div className={`${classPrefix}-footer`}>{feedback}</div>
-  )
+  const descriptionElement =
+    feedback || description ? (
+      <>
+        {description}
+        <div className={`${classPrefix}-footer`}>{feedback}</div>
+      </>
+    ) : null
 
   return (
     <List.Item
@@ -120,9 +137,14 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = props => {
       prefix={layout === 'horizontal' && labelElement}
       extra={extra}
       description={descriptionElement}
-      className={classNames(classPrefix, className, {
-        [`${classPrefix}-hidden`]: hidden,
-      })}
+      className={classNames(
+        classPrefix,
+        className,
+        `${classPrefix}-${layout}`,
+        {
+          [`${classPrefix}-hidden`]: hidden,
+        }
+      )}
       disabled={disabled}
       onClick={props.onClick}
       arrow={arrow}
@@ -147,6 +169,7 @@ export const FormItem: FC<FormItemProps> = props => {
     noStyle,
     hidden,
     layout,
+    description,
     // Field 相关
     disabled,
     rules,
@@ -215,6 +238,7 @@ export const FormItem: FC<FormItemProps> = props => {
         label={label}
         extra={extra}
         help={help}
+        description={description}
         required={isRequired}
         disabled={disabled}
         hasFeedback={hasFeedback}
